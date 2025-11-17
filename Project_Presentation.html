@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Database Management System - CS 4354</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #4A90E2;
+        }
+        .reveal code {
+            background: #2d2d2d;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .reveal pre code {
+            display: block;
+            padding: 15px;
+            overflow: auto;
+            max-height: 500px;
+            font-size: 0.75em;
+        }
+        .reveal table {
+            font-size: 0.7em;
+        }
+        .reveal .slide-number {
+            font-size: 0.6em;
+        }
+        .center {
+            text-align: center;
+        }
+        .highlight {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <section>
+                <h1>NFL Database Management System</h1>
+                <h3>CS 4354: Concepts of Database Systems</h3>
+                <p>Fall 2025</p>
+                <p class="highlight">Team: [Your Team Name]</p>
+            </section>
+
+            <!-- Slide 2: Project Overview -->
+            <section>
+                <h2>Project Overview</h2>
+                <h3>What We Built</h3>
+                <ul>
+                    <li><strong>Purpose:</strong> Comprehensive database system for managing NFL teams, players, coaches, games, and statistics</li>
+                    <li><strong>Scope:</strong>
+                        <ul>
+                            <li>7 core tables</li>
+                            <li>Complete team and player tracking</li>
+                            <li>Game scheduling and statistics</li>
+                            <li>Coaching staff management</li>
+                        </ul>
+                    </li>
+                    <li><strong>Technology:</strong> MySQL 9.5.0</li>
+                    <li><strong>Database:</strong> NFL</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Requirements -->
+            <section>
+                <h2>System Requirements (R1-R5)</h2>
+                <ul>
+                    <li><strong>R1:</strong> Track team information (conference, division, stadium)</li>
+                    <li><strong>R2:</strong> Track player information (position, status, attributes)</li>
+                    <li><strong>R3:</strong> Track team statistics by season</li>
+                    <li><strong>R4:</strong> Track game schedules (season, week, teams, scores)</li>
+                    <li><strong>R5:</strong> Track coaching staff information</li>
+                </ul>
+                <p class="highlight">Each requirement is testable via specific SQL queries</p>
+            </section>
+
+            <!-- Slide 4: Database Schema Overview -->
+            <section>
+                <h2>Database Schema Overview</h2>
+                <h3>Core Entities</h3>
+                <ul>
+                    <li><strong>stadium</strong> - Venue information</li>
+                    <li><strong>positions</strong> - Player position definitions</li>
+                    <li><strong>team</strong> - NFL team data</li>
+                    <li><strong>player</strong> - Player roster information</li>
+                    <li><strong>coaches</strong> - Coaching staff</li>
+                    <li><strong>schedules</strong> - Game schedules</li>
+                    <li><strong>team_stats</strong> - Seasonal team statistics</li>
+                </ul>
+                <p class="highlight">7 tables with proper relationships and constraints</p>
+            </section>
+
+            <!-- Slide 5: ER Diagram Relationships -->
+            <section>
+                <h2>ER Diagram - Key Relationships</h2>
+                <h3>Entity Relationships</h3>
+                <ul>
+                    <li><strong>Stadium ↔ Team:</strong> 1:N (One stadium can host multiple teams)</li>
+                    <li><strong>Team ↔ Player:</strong> 1:N (One team has many players)</li>
+                    <li><strong>Team ↔ Coach:</strong> 1:N (One team has many coaches)</li>
+                    <li><strong>Team ↔ Schedule:</strong> 1:N (Home/Away relationships)</li>
+                    <li><strong>Team ↔ Team_Stats:</strong> 1:N (One team, multiple seasons)</li>
+                    <li><strong>Position ↔ Player:</strong> 1:N (One position, many players)</li>
+                </ul>
+                <p class="highlight">All relationships properly defined with foreign keys</p>
+            </section>
+
+            <!-- Slide 6: Primary Keys -->
+            <section>
+                <h2>Relational Schema - Primary Keys</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Primary Key</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>stadium</td><td>stadiumId</td><td>INT AUTO_INCREMENT</td></tr>
+                        <tr><td>positions</td><td>positionCode</td><td>VARCHAR(5)</td></tr>
+                        <tr><td>team</td><td>teamId</td><td>INT AUTO_INCREMENT</td></tr>
+                        <tr><td>player</td><td>playerId</td><td>INT AUTO_INCREMENT</td></tr>
+                        <tr><td>coaches</td><td>coachID</td><td>INT AUTO_INCREMENT</td></tr>
+                        <tr><td>schedules</td><td>gameId</td><td>INT AUTO_INCREMENT</td></tr>
+                        <tr><td>team_stats</td><td>(teamId, season)</td><td>Composite PK</td></tr>
+                    </tbody>
+                </table>
+                <p class="highlight">Surrogate keys for most tables, composite key for team_stats</p>
+            </section>
+
+            <!-- Slide 7: Foreign Keys -->
+            <section>
+                <h2>Relational Schema - Foreign Keys</h2>
+                <h3>Referential Integrity</h3>
+                <ul>
+                    <li><strong>team.stadiumId</strong> → stadium.stadiumId</li>
+                    <li><strong>player.teamId</strong> → team.teamId</li>
+                    <li><strong>player.position</strong> → positions.positionCode</li>
+                    <li><strong>coaches.teamId</strong> → team.teamId</li>
+                    <li><strong>schedules.homeTeamId</strong> → team.teamId</li>
+                    <li><strong>schedules.awayTeamId</strong> → team.teamId</li>
+                    <li><strong>schedules.stadiumId</strong> → stadium.stadiumId</li>
+                    <li><strong>team_stats.teamId</strong> → team.teamId</li>
+                </ul>
+                <p class="highlight">All foreign keys enforce referential integrity</p>
+            </section>
+
+            <!-- Slide 8: Constraints -->
+            <section>
+                <h2>Constraints and Data Validation</h2>
+                <h3>Data Integrity Features</h3>
+                <ul>
+                    <li><strong>CHECK Constraints:</strong>
+                        <ul>
+                            <li>Capacity > 0</li>
+                            <li>Height: 60-90 inches</li>
+                            <li>Weight: 150-400 lbs</li>
+                            <li>Week: 1-18</li>
+                            <li>Season >= 1920</li>
+                            <li>Scores >= 0</li>
+                        </ul>
+                    </li>
+                    <li><strong>UNIQUE:</strong> teamName</li>
+                    <li><strong>ENUM:</strong> conference, division, status, offenseOrDefense</li>
+                    <li><strong>Custom CHECK:</strong> homeTeamId != awayTeamId</li>
+                </ul>
+                <p class="highlight">Comprehensive validation ensures data quality</p>
+            </section>
+
+            <!-- Slide 9: Normalization Before -->
+            <section>
+                <h2>Normalization Evidence</h2>
+                <h3>Before: Denormalized Table</h3>
+                <pre><code>player_team_stats (
+    playerId, playerName, teamName, conference, division,
+    position, pointsScored, touchdowns, passingYards, season
+)</code></pre>
+                <h3>Problems:</h3>
+                <ul>
+                    <li>Update anomaly: Team name changes require multiple updates</li>
+                    <li>Insertion anomaly: Cannot add team without players</li>
+                    <li>Deletion anomaly: Removing players loses team data</li>
+                    <li>Redundancy: Team info repeated for every player</li>
+                </ul>
+            </section>
+
+            <!-- Slide 10: Normalization After -->
+            <section>
+                <h2>Normalization Evidence</h2>
+                <h3>After: Normalized Design</h3>
+                <p><strong>Decomposed into:</strong></p>
+                <ol>
+                    <li><strong>team</strong> (teamId, teamName, conference, division, ...)</li>
+                    <li><strong>player</strong> (playerId, teamId, firstName, lastName, ...)</li>
+                    <li><strong>team_stats</strong> (teamId, season, pointsScored, ...)</li>
+                </ol>
+                <h3>Benefits:</h3>
+                <ul>
+                    <li>✅ Eliminates update anomalies</li>
+                    <li>✅ Allows teams without players</li>
+                    <li>✅ Preserves team data when players removed</li>
+                    <li>✅ No redundant team information</li>
+                </ul>
+                <p class="highlight">Follows 3NF - removes transitive dependencies</p>
+            </section>
+
+            <!-- Slide 11: NULL Policy -->
+            <section>
+                <h2>NULL Policy</h2>
+                <h3>Strategic NULL Usage</h3>
+                <ul>
+                    <li><strong>team.stadiumId:</strong> Teams may not have assigned stadium initially</li>
+                    <li><strong>player.teamId:</strong> Free agents not on any team</li>
+                    <li><strong>player.position:</strong> Players transitioning positions</li>
+                    <li><strong>player.dob/height/weight:</strong> Incomplete historical data</li>
+                    <li><strong>player.college/draftYear:</strong> Undrafted or international players</li>
+                    <li><strong>schedules.gameTime:</strong> TBD game times</li>
+                    <li><strong>coaches.teamId:</strong> Coaches between teams</li>
+                </ul>
+                <p class="highlight">NULL values represent legitimate "unknown" or "not applicable" states</p>
+            </section>
+
+            <!-- Slide 12: Index Strategy -->
+            <section>
+                <h2>Index Strategy</h2>
+                <h3>Composite Index: idx_schedules_season_week</h3>
+                <p><strong>Index:</strong></p>
+                <pre><code>CREATE INDEX idx_schedules_season_week 
+ON schedules(season, week);</code></pre>
+                <p><strong>Query Pattern:</strong></p>
+                <pre><code>SELECT * FROM schedules 
+WHERE season = 2025 AND week = 1;</code></pre>
+                <p class="highlight">Benefit: Single index lookup instead of full table scan for common weekly schedule queries</p>
+            </section>
+
+            <!-- Slide 13: Additional Indexes -->
+            <section>
+                <h2>Additional Indexes</h2>
+                <h3>Performance Optimization</h3>
+                <ul>
+                    <li><strong>idx_team_stats_season:</strong> Fast season-based statistics queries</li>
+                    <li><strong>idx_player_team_position:</strong> Efficient player roster lookups by team and position</li>
+                </ul>
+                <p><strong>Query Examples:</strong></p>
+                <ul>
+                    <li>"Show all 2024 season stats"</li>
+                    <li>"List all QBs for team X"</li>
+                </ul>
+                <p class="highlight">Indexes support common access patterns</p>
+            </section>
+
+            <!-- Slide 14: Evidence Query 1 -->
+            <section>
+                <h2>Evidence Query 1</h2>
+                <h3>Requirement R1: Team Information</h3>
+                <pre><code>SELECT t.teamName, t.conference, t.division,
+       s.stadiumName, s.locationCity, s.capacity
+FROM team t
+JOIN stadium s ON t.stadiumId = s.stadiumId
+WHERE t.conference = 'NFC'
+ORDER BY t.teamName;</code></pre>
+                <p><strong>Demonstrates:</strong> JOIN operations, filtering by conference, team-stadium relationship</p>
+            </section>
+
+            <!-- Slide 15: Evidence Query 2 -->
+            <section>
+                <h2>Evidence Query 2</h2>
+                <h3>Requirement R2: Player Information</h3>
+                <pre><code>SELECT t.teamName, 
+       CONCAT(p.firstName, ' ', p.lastName) AS playerName,
+       pos.positionName, pos.offenseOrDefense,
+       p.height, p.weight, p.status
+FROM player p
+JOIN team t ON p.teamId = t.teamId
+JOIN positions pos ON p.position = pos.positionCode
+WHERE t.teamId = 1 AND p.status = 'Active'
+ORDER BY pos.offenseOrDefense, pos.positionName;</code></pre>
+                <p><strong>Demonstrates:</strong> Multi-table JOIN, filtering by team and status, position categorization</p>
+            </section>
+
+            <!-- Slide 16: Evidence Query 3 -->
+            <section>
+                <h2>Evidence Query 3</h2>
+                <h3>Requirement R3: Team Statistics</h3>
+                <pre><code>SELECT t.teamName, ts.season, ts.pointsScored,
+       ts.pointsPerGame, ts.pointsAllowed,
+       (ts.pointsScored - ts.pointsAllowed) AS pointDifferential,
+       ts.passingYards, ts.rushingYards,
+       (ts.passingYards + ts.rushingYards) AS totalYards
+FROM team_stats ts
+JOIN team t ON ts.teamId = t.teamId
+WHERE ts.season = 2024
+ORDER BY ts.pointsScored DESC;</code></pre>
+                <p><strong>Demonstrates:</strong> Aggregation, calculated fields, season-based filtering, performance ranking</p>
+            </section>
+
+            <!-- Slide 17: Implementation Highlights -->
+            <section>
+                <h2>Implementation Highlights</h2>
+                <h3>Key Design Decisions</h3>
+                <ol>
+                    <li><strong>Surrogate Keys:</strong> Used AUTO_INCREMENT for most tables (flexibility, performance)</li>
+                    <li><strong>Composite Primary Key:</strong> team_stats uses (teamId, season) - natural for the domain</li>
+                    <li><strong>ENUM Types:</strong> Enforce valid values for conference, division, status</li>
+                    <li><strong>CHECK Constraints:</strong> Validate data ranges (height, weight, scores, weeks)</li>
+                    <li><strong>Foreign Keys:</strong> Maintain referential integrity across all relationships</li>
+                </ol>
+            </section>
+
+            <!-- Slide 18: Data Integrity -->
+            <section>
+                <h2>Data Integrity Features</h2>
+                <h3>Constraints and Validation</h3>
+                <ul>
+                    <li><strong>Referential Integrity:</strong> All foreign keys properly defined</li>
+                    <li><strong>Domain Constraints:</strong> ENUM types restrict valid values</li>
+                    <li><strong>Range Validation:</strong> CHECK constraints on numeric fields</li>
+                    <li><strong>Uniqueness:</strong> teamName must be unique</li>
+                    <li><strong>Business Rules:</strong> Teams cannot play themselves (homeTeamId != awayTeamId)</li>
+                </ul>
+                <p class="highlight">Comprehensive data protection</p>
+            </section>
+
+            <!-- Slide 19: Query Performance -->
+            <section>
+                <h2>Query Performance</h2>
+                <h3>Optimization Strategy</h3>
+                <ul>
+                    <li><strong>Composite Indexes:</strong> Support multi-column WHERE clauses</li>
+                    <li><strong>Foreign Key Indexes:</strong> Automatically created for FK columns</li>
+                    <li><strong>Query Patterns:</strong> Indexes match common access patterns</li>
+                    <li><strong>Covering Indexes:</strong> Reduce need for table lookups</li>
+                </ul>
+                <p class="highlight">Designed for efficient query execution</p>
+            </section>
+
+            <!-- Slide 20: Use Cases -->
+            <section>
+                <h2>Use Cases</h2>
+                <h3>Real-World Applications</h3>
+                <ol>
+                    <li><strong>Team Management:</strong> Track roster changes, player status</li>
+                    <li><strong>Game Scheduling:</strong> Manage season schedules and results</li>
+                    <li><strong>Performance Analysis:</strong> Compare team statistics across seasons</li>
+                    <li><strong>Coaching Staff:</strong> Track coaching assignments and roles</li>
+                    <li><strong>Player Tracking:</strong> Monitor player attributes and draft history</li>
+                </ol>
+                <p class="highlight">Supports comprehensive NFL data management</p>
+            </section>
+
+            <!-- Slide 21: Database Statistics -->
+            <section>
+                <h2>Database Statistics</h2>
+                <h3>Scale and Capacity</h3>
+                <ul>
+                    <li><strong>Tables:</strong> 7 core tables</li>
+                    <li><strong>Relationships:</strong> 8 foreign key relationships</li>
+                    <li><strong>Constraints:</strong> 15+ CHECK constraints</li>
+                    <li><strong>Indexes:</strong> 3 performance indexes</li>
+                    <li><strong>Data Types:</strong> Properly sized VARCHAR, INT, ENUM, DATE, TIME</li>
+                </ul>
+                <p class="highlight">Scalable design for full NFL dataset</p>
+            </section>
+
+            <!-- Slide 22: Testing -->
+            <section>
+                <h2>Testing and Validation</h2>
+                <h3>Quality Assurance</h3>
+                <ul>
+                    <li><strong>Schema Validation:</strong> All tables created successfully</li>
+                    <li><strong>Constraint Testing:</strong> CHECK constraints prevent invalid data</li>
+                    <li><strong>Foreign Key Testing:</strong> Referential integrity enforced</li>
+                    <li><strong>Query Testing:</strong> All evidence queries execute correctly</li>
+                    <li><strong>Data Integrity:</strong> NULL policies tested and validated</li>
+                </ul>
+                <p class="highlight">Thoroughly tested and verified</p>
+            </section>
+
+            <!-- Slide 23: Key Takeaways -->
+            <section>
+                <h2>Key Takeaways</h2>
+                <h3>Design Strengths</h3>
+                <ul>
+                    <li>✅ <strong>Normalized Design:</strong> Eliminates data anomalies</li>
+                    <li>✅ <strong>Referential Integrity:</strong> Foreign keys maintain relationships</li>
+                    <li>✅ <strong>Data Validation:</strong> CHECK constraints ensure quality</li>
+                    <li>✅ <strong>Performance:</strong> Indexes optimize common queries</li>
+                    <li>✅ <strong>Flexibility:</strong> NULL policies handle edge cases</li>
+                    <li>✅ <strong>Scalability:</strong> Design supports full NFL dataset</li>
+                </ul>
+            </section>
+
+            <!-- Slide 24: Conclusion -->
+            <section class="center">
+                <h2>Conclusion</h2>
+                <h3>Project Summary</h3>
+                <ul>
+                    <li>Complete NFL database system with 7 tables</li>
+                    <li>Proper normalization (3NF)</li>
+                    <li>Comprehensive constraints and validation</li>
+                    <li>Optimized with strategic indexes</li>
+                    <li>Three evidence queries demonstrate requirements</li>
+                    <li>Ready for production use</li>
+                </ul>
+                <h2 style="margin-top: 50px;">Thank You!</h2>
+                <h3>Questions?</h3>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: false,
+            transition: 'slide',
+            slideNumber: true,
+            plugins: []
+        });
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
+
