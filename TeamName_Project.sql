@@ -2,14 +2,15 @@
 -- 1. HEADER META (commented out)
 -- ============================================================================
 /*
-Team Name: [Your Team Name]
+Team Name: JJWNNC
 Team Members:
-  1. [Member 1 Name]
-  2. [Member 2 Name]
-  3. [Member 3 Name]
-  4. [Member 4 Name]
-  5. [Member 5 Name]
-  6. [Member 6 Name]
+
+    1.Josiah Lukee
+    2.Walker Moody
+    3.Connor Hansen
+    4.John Heitzman
+    5.Noah Kung
+    6.Nate Cannon
 
 MySQL Version Tested: 8.0.x
 
