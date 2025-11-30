@@ -1,4 +1,21 @@
 /*
+    Team Name: JJWNNC
+    Team Members:
+
+        1.Josiah Lukee
+        2.Walker Moody
+        3.Connor Hansen
+        4.John Heitzman
+        5.Noah Kung
+        6.Nate Cannon
+
+    MySQL Version Tested: 8.0.x
+
+    Run Instructions:
+    1. Ensure MySQL 8.x is running
+    2. Execute this entire file: mysql -u root -p < TeamName_Project.sql
+    3. Or copy and paste into MySQL Workbench and execute
+    4. The script will drop and recreate the NFL database from scratch
 */
 CREATE DATABASE IF NOT EXISTS NFL;
 USE NFL;
@@ -188,7 +205,6 @@ INSERT INTO stadium (stadiumName, locationCity, locationState, capacity, surface
 
 
 INSERT INTO team (teamName, conference, division, stadiumId, establishedYear) VALUES
-
 ('New England Patriots', 'AFC', 'East', 1, 1959),
 ('Indianapolis Colts', 'AFC', 'South', 2, 1953),
 ('Denver Broncos', 'AFC', 'West', 3, 1959),
@@ -290,10 +306,12 @@ INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, 
 (17, 'A.J.', 'Brown',       'WR', '1997-06-30', 74, 226, 'Ole Miss', 2019, 2, 51, 'Active'),
 (17, 'Jordan', 'Mailata',  'LT', '1997-08-13', 82, 350, NULL, 2018, 7, 233, 'Active'),
 (17, 'Lane', 'Johnson',    'RT', '1990-05-08', 78, 327, 'Oklahoma', 2013, 1, 4, 'Active'),
+
 -- Detroit Lions (teamId = 22)
 (22, 'Amon-Ra', 'St. Brown','WR', '1999-10-24', 72, 202, 'USC', 2021, 4, 112, 'Active'),
 (22, 'Aidan', 'Hutchinson', 'ROLB', '2000-08-26', 76, 258, 'Michigan', 2022, 1, 2, 'Active'),
 (22, 'Penei', 'Sewell',     'LT', '2000-10-09', 78, 331, 'Oregon', 2021, 1, 7, 'Active'),
+
 -- Denver Broncos (teamId = 3)
 (3, 'Patrick', 'Surtain II','CB', '1998-06-13', 75, 202, 'Alabama', 2021, 1, 9, 'Active'),
 (3, 'Quinn', 'Meinerz',     'LG', '1999-11-18', 76, 322, 'Wisconsin', 2022, 1, 19, 'Active'),
@@ -463,16 +481,8 @@ FROM team t
 JOIN stadium s ON t.stadiumId = s.stadiumId
 ORDER BY t.teamName;
 
-SELECT 
-    CONCAT(p.firstName, ' ', p.lastName) AS playerName,
-    pos.positionName,
-    p.height,
-    p.weight,
-    p.college,
-    p.status
-FROM player p
-JOIN positions pos ON p.position = pos.positionCode
-WHERE p.teamId = 1; -- change 1 to any teamId;
+-- Team stats
+-- players (example wr)
 
 SELECT 
     t.teamName,
@@ -483,21 +493,4 @@ FROM coaches c
 JOIN team t ON c.teamId = t.teamId
 ORDER BY t.teamName, role DESC;
 
-
-SELECT 
-    s.season,
-    s.week,
-    s.gameDate,
-    s.gameTime,
-    ht.teamName AS homeTeam,
-    at.teamName AS awayTeam,
-    st.stadiumName,
-    s.homeScore,
-    s.awayScore
-FROM schedules s
-JOIN team ht ON s.homeTeamId = ht.teamId
-JOIN team at ON s.awayTeamId = at.teamId
-JOIN stadium st ON s.stadiumId = st.stadiumId
-WHERE s.week = 1
-ORDER BY s.gameDate, s.gameTime;
 
