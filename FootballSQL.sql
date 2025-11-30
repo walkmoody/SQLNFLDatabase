@@ -236,10 +236,10 @@ INSERT INTO coaches (teamId, firstName, lastName, coachPosition, isHeadCoach, do
 (10, 'John',  'Harbaugh',      'Head Coach', 1, '1962-09-23'),
 (11, 'Mike',  'McDaniel',      'Head Coach', 1, '1983-03-06'),
 (12, 'Zac',   'Taylor',        'Head Coach', 1, '1983-05-10'),
-(13, 'Antonio','Pierce',       'Head Coach', 1, '1978-10-26'),
+(13, 'Pete', 'Carrol',       'Head Coach', 1, '1978-10-26'),
 (14, 'Kevin', 'Stefanski',     'Head Coach', 1, '1982-05-08'),
-(15, 'Robert','Saleh',         'Head Coach', 1, '1979-01-31'),
-(16, 'Brian', 'Callahan',      'Head Coach', 1, '1984-06-10'),
+(15, 'Aaron', 'Glenn',         'Head Coach', 1, '1979-01-31'),
+(16, 'Mike', 'McCoy',      'Head Coach', 1, '1984-06-10'),
 
 -- NFC
 (17, 'Nick',  'Sirianni',       'Head Coach', 1, '1981-06-15'),
@@ -256,7 +256,7 @@ INSERT INTO coaches (teamId, firstName, lastName, coachPosition, isHeadCoach, do
 (28, 'Jonathan','Gannon',       'Head Coach', 1, '1983-04-03'),
 (29, 'Raheem','Morris',         'Head Coach', 1, '1976-09-03'),
 (30, 'Dan',   'Quinn',          'Head Coach', 1, '1970-09-11'),
-(31, 'Dennis','Allen',          'Head Coach', 1, '1972-09-22'),
+(31, 'Kellen', 'Moore',          'Head Coach', 1, '1972-09-22'),
 (32, 'Brian', 'Daboll',         'Head Coach', 1, '1975-04-14');
 
 INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, college, draftYear, draftRound, draftPick, status) VALUES
@@ -411,7 +411,7 @@ INSERT INTO schedules (season, week, gameDate, gameTime, homeTeamId, awayTeamId,
 (2025, 6, '2025-10-12', '13:00:00', 29, 13, 29, 0, 0),
 (2025, 6, '2025-10-12', '16:25:00', 18, 25, 18, 0, 0),
 (2025, 6, '2025-10-12', '20:20:00', 31, 9, 31, 0, 0),
-(2025, 6, '2025-10-12', '20:15:00', 20, 32, 20, 0, 0),
+(2025, 6, '2025-10-12', '20:15:00', 20, 32, 20, 0, 0);
 
 INSERT INTO team_stats (teamId, season, pointsScored, pointsPerGame, pointsAllowed,
                         passingYards, passYrdPerGame, rushingYards, rushYrdPerGame,
