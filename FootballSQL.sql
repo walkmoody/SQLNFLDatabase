@@ -1,4 +1,22 @@
 /*
+    Team Name: JJWNNC
+    Team Members:
+
+        1.Josiah Lukee
+        2.Walker Moody
+        3.Connor Hansen
+        4.John Heitzman
+        5.Noah Kung
+        6.Nate Cannon
+
+    MySQL Version Tested: 8.0.x
+
+    Run Instructions:
+    1. Ensure MySQL 8.x is running
+    2. Execute this entire file: mysql -u root -p < TeamName_Project.sql
+    3. Or copy and paste into MySQL Workbench and execute
+    4. The script will drop and recreate the NFL database from scratch
+    */
 */
 CREATE DATABASE IF NOT EXISTS NFL;
 USE NFL;
