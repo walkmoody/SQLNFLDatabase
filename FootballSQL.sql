@@ -16,7 +16,6 @@
     2. Execute this entire file: mysql -u root -p < TeamName_Project.sql
     3. Or copy and paste into MySQL Workbench and execute
     4. The script will drop and recreate the NFL database from scratch
-    */
 */
 CREATE DATABASE IF NOT EXISTS NFL;
 USE NFL;
@@ -430,7 +429,7 @@ INSERT INTO schedules (season, week, gameDate, gameTime, homeTeamId, awayTeamId,
 (2025, 6, '2025-10-12', '13:00:00', 29, 13, 29, 0, 0),
 (2025, 6, '2025-10-12', '16:25:00', 18, 25, 18, 0, 0),
 (2025, 6, '2025-10-12', '20:20:00', 31, 9, 31, 0, 0),
-(2025, 6, '2025-10-12', '20:15:00', 20, 32, 20, 0, 0),
+(2025, 6, '2025-10-12', '20:15:00', 20, 32, 20, 0, 0);
 
 INSERT INTO team_stats (teamId, season, pointsScored, pointsPerGame, pointsAllowed,
                         passingYards, passYrdPerGame, rushingYards, rushYrdPerGame,
@@ -482,16 +481,8 @@ FROM team t
 JOIN stadium s ON t.stadiumId = s.stadiumId
 ORDER BY t.teamName;
 
-SELECT 
-    CONCAT(p.firstName, ' ', p.lastName) AS playerName,
-    pos.positionName,
-    p.height,
-    p.weight,
-    p.college,
-    p.status
-FROM player p
-JOIN positions pos ON p.position = pos.positionCode
-WHERE p.teamId = 1; -- change 1 to any teamId;
+-- Team stats
+-- players (example wr)
 
 SELECT 
     t.teamName,
@@ -502,21 +493,4 @@ FROM coaches c
 JOIN team t ON c.teamId = t.teamId
 ORDER BY t.teamName, role DESC;
 
-
-SELECT 
-    s.season,
-    s.week,
-    s.gameDate,
-    s.gameTime,
-    ht.teamName AS homeTeam,
-    at.teamName AS awayTeam,
-    st.stadiumName,
-    s.homeScore,
-    s.awayScore
-FROM schedules s
-JOIN team ht ON s.homeTeamId = ht.teamId
-JOIN team at ON s.awayTeamId = at.teamId
-JOIN stadium st ON s.stadiumId = st.stadiumId
-WHERE s.week = 1
-ORDER BY s.gameDate, s.gameTime;
 
