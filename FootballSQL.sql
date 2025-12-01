@@ -1,7 +1,6 @@
 /*
     Team Name: JJWNNC
     Team Members:
-
         1.Josiah Luke
         2.Walker Moody
         3.Connor Hansen
@@ -9,13 +8,13 @@
         5.Noah Kung
         6.Nate Cannon
 
-    MySQL Version Tested: 8.0.x
+
+    MySQL Version Tested: 8.0.43
 
     Run Instructions:
-    1. Ensure MySQL 8.x is running
-    2. Execute this entire file: mysql -u root -p < TeamName_Project.sql
-    3. Or copy and paste into MySQL Workbench and execute
-    4. The script will drop and recreate the NFL database from scratch
+    1. Ensure the required MySQL server is running
+    2. open MySQL Workbench and execute 
+    3. The script will drop and recreate the NFL database from scratch
 */
 CREATE DATABASE IF NOT EXISTS NFL;
 USE NFL;
@@ -29,6 +28,9 @@ DROP TABLE IF EXISTS player;
 DROP TABLE IF EXISTS team;
 DROP TABLE IF EXISTS positions;
 DROP TABLE IF EXISTS stadium;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 
 
 -- Stadiums
@@ -197,8 +199,7 @@ INSERT INTO stadium (stadiumName, locationCity, locationState, capacity, surface
 ('State Farm Stadium','Glendale','Arizona',63400,'grass'),
 ('Mercedes-Benz Stadium','Atlanta','Georiga',71000,'turf'),
 ('FedExField','Atlanta','Georgia',64000,'grass'),
-('Caesars Superdome','New Orleans','Louisiana',73208,'turf'),
-('MetLife Stadium','East Rutherford','New Jersey',82500,'turf');
+('Caesars Superdome','New Orleans','Louisiana',73208,'turf');
 
 
 
@@ -235,7 +236,7 @@ INSERT INTO team (teamName, conference, division, stadiumId, establishedYear) VA
 ('Atlanta Falcons', 'NFC', 'South', 29, 1966),
 ('Washington Commanders', 'NFC', 'East', 30, 1932),
 ('New Orleans Saints', 'NFC', 'South', 31, 1967),
-('New York Giants', 'NFC', 'East', 32, 1925);
+('New York Giants', 'NFC', 'East', 15, 1925);
 
 
 INSERT INTO coaches (teamId, firstName, lastName, coachPosition, isHeadCoach, dob) VALUES
@@ -372,7 +373,7 @@ INSERT INTO schedules (season, week, gameDate, gameTime, homeTeamId, awayTeamId,
 (2025, 2, '2025-09-14', '20:15:00', 13, 24, 13, 0, 0),
 (2025, 2, '2025-09-14', '13:00:00', 8, 5, 8, 0, 0),
 (2025, 2, '2025-09-14', '16:25:00', 4, 23, 4, 0, 0),
-(2025, 2, '2025-09-14', '20:20:00', 32, 19, 32, 0, 0),
+(2025, 2, '2025-09-14', '20:20:00', 32, 19, 15, 0, 0),
 (2025, 2, '2025-09-14', '20:15:00', 30, 29, 30, 0, 0),
 
 (2025, 3, '2025-09-21', '13:00:00', 2, 3, 2, 0, 0),
@@ -407,7 +408,7 @@ INSERT INTO schedules (season, week, gameDate, gameTime, homeTeamId, awayTeamId,
 (2025, 4, '2025-09-28', '13:00:00', 22, 5, 22, 0, 0),
 (2025, 4, '2025-09-28', '16:25:00', 16, 27, 16, 0, 0),
 (2025, 4, '2025-09-28', '20:20:00', 19, 29, 19, 0, 0),
-(2025, 4, '2025-09-28', '20:15:00', 32, 7, 32, 0, 0),
+(2025, 4, '2025-09-28', '20:15:00', 32, 7, 15, 0, 0),
 
 (2025, 5, '2025-10-05', '13:00:00', 11, 19, 11, 0, 0),
 (2025, 5, '2025-10-05', '16:25:00', 30, 15, 30, 0, 0),
@@ -534,6 +535,3 @@ FROM player p
 JOIN team t ON p.teamId = t.teamId
 where position = 'wr' or college is NULL
 ORDER BY teamName, role DESC, personName;
-
-
-SET FOREIGN_KEY_CHECKS = 1
