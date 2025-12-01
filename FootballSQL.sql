@@ -2,7 +2,7 @@
     Team Name: JJWNNC
     Team Members:
 
-        1.Josiah Lukee
+        1.Josiah Luke
         2.Walker Moody
         3.Connor Hansen
         4.John Heitzman
@@ -537,3 +537,4 @@ where position = 'wr' or college is NULL
 ORDER BY teamName, role DESC, personName;
 
 
+SET FOREIGN_KEY_CHECKS = 1
