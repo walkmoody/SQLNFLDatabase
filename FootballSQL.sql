@@ -184,22 +184,22 @@ INSERT INTO stadium (stadiumName, locationCity, locationState, capacity, surface
 ('MetLife Stadium', 'East Rutherford', 'New Jersey', 82500, 'turf'),
 ('Nissan Stadium', 'Nashville', 'Tennessee', 69143, 'turf'),
 
-('Lincoln Financial Field','Philadelphia','Pennsylvania','67594','turf'),
-('Lumen Field','Seattle','Washington','68750','grass'),
-('Soldier Field','Chicago','Illinois','62500','grass'),
-('Raymond James Stadium','Tampa','Florida','69218','grass'),
-('SoFi Stadium','Inglewood','California','70240','turf'),
-('Ford Field','Detroit','Michigan','65000','turf'),
-('Lambeau Field','Green Bay','Wisconsin','81441','grass'),
-('Levis Stadium','Santa Clara','California','75000','turf'),
-('Bank of America Stadium','Charlotte','North Carolina','75037','grass'),
-('The US Bank Stadium','Minneapolis','Minnesota','66860','turf'),
-('AT&T Stadium','Arlington','Texas','80000','turf'),
-('State Farm Stadium','Glendale','Arizona','63400','grass'),
-('Mercedes-Benz Stadium','Atlanta','Georiga','71000','turf'),
-('FedExField','Atlanta','Georgia','64000','grass'),
-('Caesars Superdome','New Orleans','Louisiana','73208','turf'),
-('MetLife Stadium','East Rutherford','New Jersey','82500','turf');
+('Lincoln Financial Field','Philadelphia','Pennsylvania',67594,'turf'),
+('Lumen Field','Seattle','Washington',68750,'grass'),
+('Soldier Field','Chicago','Illinois',62500,'grass'),
+('Raymond James Stadium','Tampa','Florida',69218,'grass'),
+('SoFi Stadium','Inglewood','California',70240,'turf'),
+('Ford Field','Detroit','Michigan',65000,'turf'),
+('Lambeau Field','Green Bay','Wisconsin',81441,'grass'),
+('Levis Stadium','Santa Clara','California',75000,'turf'),
+('Bank of America Stadium','Charlotte','North Carolina',75037,'grass'),
+('The US Bank Stadium','Minneapolis','Minnesota',66860,'turf'),
+('AT&T Stadium','Arlington','Texas',80000,'turf'),
+('State Farm Stadium','Glendale','Arizona',63400,'grass'),
+('Mercedes-Benz Stadium','Atlanta','Georiga',71000,'turf'),
+('FedExField','Atlanta','Georgia',64000,'grass'),
+('Caesars Superdome','New Orleans','Louisiana',73208,'turf'),
+('MetLife Stadium','East Rutherford','New Jersey',82500,'turf');
 
 
 
