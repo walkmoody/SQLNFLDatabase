@@ -8,7 +8,6 @@
         5.Noah Kung
         6.Nate Cannon
 
-
     MySQL Version Tested: 8.0.43
 
     Run Instructions:
