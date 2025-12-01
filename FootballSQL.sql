@@ -504,11 +504,22 @@ ORDER BY t.teamName;
 
 SELECT 
     t.teamName,
-    CONCAT(c.firstName, ' ', c.lastName) AS coachName,
-    c.coachPosition,
-    CASE WHEN c.isHeadCoach = 1 THEN 'HEAD COACH' ELSE 'Assistant' END AS role
+    CONCAT(c.firstName, ' ', c.lastName) AS personName,
+    'Coach' AS role,
+    c.coachPosition AS position
 FROM coaches c
 JOIN team t ON c.teamId = t.teamId
+WHERE c.isHeadCoach = 1
 ORDER BY t.teamName, role DESC;
+
+
+SELECT
+    t.teamName,
+    CONCAT(p.firstName, ' ', p.lastName) AS personName,
+    'Player' AS role,
+    p.position AS position
+FROM player p
+JOIN team t ON p.teamId = t.teamId
+ORDER BY teamName, role DESC, personName;
 
 
