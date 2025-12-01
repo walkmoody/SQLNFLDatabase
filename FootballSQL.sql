@@ -276,9 +276,18 @@ INSERT INTO coaches (teamId, firstName, lastName, coachPosition, isHeadCoach, do
 (32, 'Brian', 'Daboll',         'Head Coach', 1, '1975-04-14');
 
 INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, college, draftYear, draftRound, draftPick, status) VALUES
+-- Kansas City Chiefs(teamId = 8)
+(8, 'Patrick',  'Mahomes', 'QB', '1995-09-17', 74, 225, 'Texas Tech', 2017, 1, 10, 'Active'),
+(8, 'Travis', 'Kelce', 'TE', '1989-08-05', 77, 250, 'Cincinnati', 2013, 3, 63, 'Active'),
+(8, 'Rashee', 'Rice', 'WR', '2000-04-22', 73, 203, 'Southern Methodist', 2023, 2, 55, 'Active'),
+
+-- Houston Texans (teamId = 9)
+(9, 'Tank', 'Dell', 'WR', '1999-10-29', 70, 165, 'Houston', 2023, 3, 69, 'Out'),
+(9, 'Will', 'Anderson Jr.', 'LDE', '2001-09-02', 76, 243, 'Alabama', 2023, 1, 3, 'Active'),
+(9, 'C.J.', 'Stroud', 'QB', '2001-10-03', 75, 218, 'Ohio State', 2023, 1, 2, 'Active'),
 
 -- Arizona Cardinals (teamId = 28)
-(28, 'Trey', 'McBride',    'TE', NULL, 75, 250, 'South Dakota State', 2022, 3, 92, 'Active'),
+(28, 'Trey', 'McBride',    'TE', '1999-11-22', 75, 250, 'South Dakota State', 2022, 3, 92, 'Active'),
 (28, 'Kyler', 'Murray',    'QB', '1997-08-07', 70, 207, 'Oklahoma', 2019, 1, 1, 'Active'),
 (28, 'Budda', 'Baker',     'SS', '1996-04-27', 71, 195, 'Washington', 2017, 2, 36, 'Active'),
 
@@ -305,11 +314,11 @@ INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, 
 -- Philadelphia Eagles (teamId = 17)
 (17, 'A.J.', 'Brown',       'WR', '1997-06-30', 74, 226, 'Ole Miss', 2019, 2, 51, 'Active'),
 (17, 'Jordan', 'Mailata',  'LT', '1997-08-13', 82, 350, NULL, 2018, 7, 233, 'Active'),
-(17, 'Lane', 'Johnson',    'RT', '1990-05-08', 78, 327, 'Oklahoma', 2013, 1, 4, 'Active'),
+(17, 'Devonta', 'Smith',    'WR', '1998-11-14', 72, 170, 'Alabama', 2021, 1, 10, 'Active'),
 
 -- Detroit Lions (teamId = 22)
 (22, 'Amon-Ra', 'St. Brown','WR', '1999-10-24', 72, 202, 'USC', 2021, 4, 112, 'Active'),
-(22, 'Aidan', 'Hutchinson', 'ROLB', '2000-08-26', 76, 258, 'Michigan', 2022, 1, 2, 'Active'),
+(22, 'Aidan', 'Hutchinson', 'LDE', '2000-08-26', 76, 258, 'Michigan', 2022, 1, 2, 'Active'),
 (22, 'Penei', 'Sewell',     'LT', '2000-10-09', 78, 331, 'Oregon', 2021, 1, 7, 'Active'),
 
 -- Denver Broncos (teamId = 3)
@@ -318,14 +327,18 @@ INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, 
 (3, 'Courtland', 'Sutton', 'WR', '1995-10-16', 75, 215, 'SMU', 2018, 2, 40, 'Active'),
 
 -- Los Angeles Rams (teamId = 21)
-(21, 'Aaron', 'Donald',     'DT', '1991-05-23', 71, 280, 'Pittsburgh', 2014, 1, 13, 'Active'),
+(21, 'Puka', 'Nacua',     'WR', '2001-05-29', 74, 212, 'BYU', 2023, 5, 177, 'Active'),
 (21, 'Leonard', 'Floyd',    'ROLB', '1992-08-20', 75, 250, 'UCLA', 2016, 1, 9, 'Active'),
-(21, 'Cooper', 'Kupp',      'WR', '1993-06-15', 74, 208, 'Eastern Washington', 2017, 3, 69, 'Active'),
+(21, 'Devonte', 'Adams',      'WR', '1992-12-24', 73, 216, 'Fresno State', 2014, 2, 53, 'Active'),
 
 -- San Francisco 49ers (teamId = 24)
 (24, 'Nick', 'Bosa',        'RDE', '1997-10-25', 76, 266, 'Ohio State', 2019, 1, 2, 'Active'),
-(24, 'Fred', 'Warner',      'MLB', '1996-11-19', 74, 230, 'Brigham Young', 2018, 3, 70, 'Active'),
-(24, 'George', 'Kittle',    'TE', '1993-10-09', 77, 250, 'Iowa', 2017, 5, 146, 'Active');
+(24, 'Fred', 'Warner',      'MLB', '1996-11-19', 74, 230, 'BYU', 2018, 3, 70, 'Active'),
+(24, 'George', 'Kittle',    'TE', '1993-10-09', 77, 250, 'Iowa', 2017, 5, 146, 'Active'),
+
+-- Free Agents (teamId is NULL)
+(NULL, 'Odell', 'Beckhham Jr.', 'WR', '1992-11-05', 71, 201, 'LSU', 2014, 1, 12, 'Active'),
+(NULL, 'Nelson', 'Agholor', 'WR', '1993-05-24', 72, 198, 'USC', 2015, 1, 20, 'Active');
 
 
 INSERT INTO schedules (season, week, gameDate, gameTime, homeTeamId, awayTeamId, stadiumId, homeScore, awayScore) VALUES
