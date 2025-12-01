@@ -500,8 +500,6 @@ JOIN team_stats ts
 WHERE ts.season = 2025
 ORDER BY t.teamName;
 
--- players (example wr)
-
 SELECT 
     t.teamName,
     CONCAT(c.firstName, ' ', c.lastName) AS personName,
@@ -517,9 +515,12 @@ SELECT
     t.teamName,
     CONCAT(p.firstName, ' ', p.lastName) AS personName,
     'Player' AS role,
-    p.position AS position
+    p.position AS position,
+    status,
+    college
 FROM player p
 JOIN team t ON p.teamId = t.teamId
+where position = 'wr' or college is NULL
 ORDER BY teamName, role DESC, personName;
 
 
