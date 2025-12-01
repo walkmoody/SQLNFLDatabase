@@ -282,7 +282,7 @@ INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, 
 (8, 'Rashee', 'Rice', 'WR', '2000-04-22', 73, 203, 'Southern Methodist', 2023, 2, 55, 'Active'),
 
 -- Houston Texans (teamId = 9)
-(9, 'Tank', 'Dell', 'WR', '1999-10-29', 70, 165, 'Houston', 2023, 3, 69, 'Out'),
+(9, 'Tank', 'Dell', 'WR', '1999-10-29', 70, 165, 'Houston', 2023, 3, 69, 'IR'),
 (9, 'Will', 'Anderson Jr.', 'LDE', '2001-09-02', 76, 243, 'Alabama', 2023, 1, 3, 'Active'),
 (9, 'C.J.', 'Stroud', 'QB', '2001-10-03', 75, 218, 'Ohio State', 2023, 1, 2, 'Active'),
 
@@ -337,7 +337,7 @@ INSERT INTO player (teamId, firstName, lastName, position, dob, height, weight, 
 (24, 'George', 'Kittle',    'TE', '1993-10-09', 77, 250, 'Iowa', 2017, 5, 146, 'Active'),
 
 -- Free Agents (teamId is NULL)
-(NULL, 'Odell', 'Beckhham Jr.', 'WR', '1992-11-05', 71, 201, 'LSU', 2014, 1, 12, 'Active'),
+(NULL, 'Odell', 'Beckham Jr.', 'WR', '1992-11-05', 71, 201, 'LSU', 2014, 1, 12, 'Active'),
 (NULL, 'Nelson', 'Agholor', 'WR', '1993-05-24', 72, 198, 'USC', 2015, 1, 20, 'Active');
 
 
