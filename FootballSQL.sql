@@ -30,7 +30,6 @@ DROP TABLE IF EXISTS team;
 DROP TABLE IF EXISTS positions;
 DROP TABLE IF EXISTS stadium;
 
-SET FOREIGN_KEY_CHECKS = 1;
 
 -- Stadiums
 CREATE TABLE stadium (
